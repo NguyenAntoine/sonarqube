@@ -1,0 +1,25 @@
+version: "2"
+services:
+  sonarqube:
+    image: sonarqube:lts
+    expose:
+      - 9000
+    networks:
+      - default
+      - reverse-proxy
+    restart: always
+    volumes:
+      - ./conf:/opt/sonarqube/conf
+      - ./data:/opt/sonarqube/data
+      - ./logs:/opt/sonarqube/logs
+      - ./extensions:/opt/sonarqube/extensions
+    environment:
+      - VIRTUAL_PORT=9000
+      - VIRTUAL_HOST=sonarqube.nguyenantoine.com
+      - LETSENCRYPT_HOST=sonarqube.nguyenantoine.com
+      - LETSENCRYPT_EMAIL=antoine.ngu@outlook.fr
+networks:
+  reverse-proxy:
+    external:
+      name: reverse-proxy
+
