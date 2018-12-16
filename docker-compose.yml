@@ -13,11 +13,8 @@ services:
       - ./data:/opt/sonarqube/data
       - ./logs:/opt/sonarqube/logs
       - ./extensions:/opt/sonarqube/extensions
-    environment:
-      - VIRTUAL_PORT=9000
-      - VIRTUAL_HOST=sonarqube.nguyenantoine.com
-      - LETSENCRYPT_HOST=sonarqube.nguyenantoine.com
-      - LETSENCRYPT_EMAIL=antoine.ngu@outlook.fr
+    env_file:
+      - .env
 networks:
   reverse-proxy:
     external:
